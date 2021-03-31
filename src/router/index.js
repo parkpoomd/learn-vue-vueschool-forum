@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/pages/PageHome.vue'
 import ThreadShow from '@/pages/PageThreadShow.vue'
+import NotFound from '@/pages/PageNotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     name: 'ThreadShow',
     component: ThreadShow,
     props: true,
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound,
   },
 ]
 
