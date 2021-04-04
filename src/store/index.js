@@ -29,7 +29,7 @@ export default new Vuex.Store({
     },
 
     createThread({ state, commit, dispatch }, { text, title, forumId }) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const threadId = 'greatThread' + Math.random()
         const userId = state.authId
         const publishedAt = Math.floor(Date.now() / 1000)
@@ -48,6 +48,21 @@ export default new Vuex.Store({
 
         dispatch('createPost', { text, threadId })
         resolve(state.threads[threadId])
+      })
+    },
+
+    updateThread({ state, commit }, { title, text, id }) {
+      return new Promise((resolve) => {
+        const thread = state.threads[id]
+        const post = state.posts[thread.firstPostId]
+
+        const newThread = { ...thread, title }
+        const newPost = { ...post, text }
+
+        commit('setThread', { thread: newThread, threadId: id })
+        commit('setPost', { post: newPost, postId: thread.firstPostId })
+
+        resolve(newThread)
       })
     },
 
