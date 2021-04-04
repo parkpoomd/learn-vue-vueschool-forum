@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/pages/PageHome'
 import Category from '@/pages/PageCategory'
 import ThreadShow from '@/pages/PageThreadShow'
+import ThreadCreate from '@/pages/PageThreadCreate'
 import Forum from '@/pages/PageForum'
 import Profile from '@/pages/PageProfile'
 import NotFound from '@/pages/PageNotFound'
@@ -25,6 +26,12 @@ const routes = [
     path: '/forum/:id',
     name: 'Forum',
     component: Forum,
+    props: true,
+  },
+  {
+    path: '/thread/create',
+    name: 'ThreadCreate',
+    component: ThreadCreate,
     props: true,
   },
   {
