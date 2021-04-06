@@ -9,6 +9,7 @@
         <img class="avatar-large" :src="user.avatar" alt="" />
       </a>
 
+      <p class="desktop-only text-small">{{ userThreadsCount }} threads</p>
       <p class="desktop-only text-small">{{ userPostsCount }} posts</p>
     </div>
 
@@ -71,6 +72,10 @@ export default {
 
     userPostsCount() {
       return this.$store.getters.userPostsCount(this.post.userId)
+    },
+
+    userThreadsCount() {
+      return this.$store.getters.userThreadsCount(this.post.userId)
     },
   },
 }
