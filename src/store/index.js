@@ -112,28 +112,76 @@ export default new Vuex.Store({
       commit('setUser', { userId: user['.key'], user })
     },
 
+    fetchCategory({ dispatch }, { id }) {
+      return dispatch('fetchItem', {
+        resource: 'categories',
+        id,
+        text: 'category:',
+      })
+    },
+
+    fetchForum({ dispatch }, { id }) {
+      return dispatch('fetchItem', {
+        resource: 'forums',
+        id,
+        text: 'forum:',
+      })
+    },
+
     fetchThread({ dispatch }, { id }) {
       return dispatch('fetchItem', {
         resource: 'threads',
         id,
-        text: 'thread : ',
+        text: 'thread:',
       })
     },
 
-    fetchUser({ dispatch }, { id }) {
-      return dispatch('fetchItem', { resource: 'users', id, text: 'user : ' })
-    },
-
     fetchPost({ dispatch }, { id }) {
-      return dispatch('fetchItem', { resource: 'posts', id, text: 'post : ' })
+      return dispatch('fetchItem', { resource: 'posts', id, text: 'post:' })
     },
 
-    fetchForums({ dispatch }, { ids }) {
-      return dispatch('fetchItems', { resource: 'forums', text: 'forums', ids })
+    fetchUser({ dispatch }, { id }) {
+      return dispatch('fetchItem', { resource: 'users', id, text: 'user:' })
     },
 
-    fetchPosts({ dispatch }, { ids }) {
-      return dispatch('fetchItems', { resource: 'posts', text: 'posts', ids })
+    fetchCategories(context, { ids }) {
+      return context.dispatch('fetchItems', {
+        resource: 'categories',
+        ids,
+        text: 'categories:',
+      })
+    },
+
+    fetchForums(context, { ids }) {
+      return context.dispatch('fetchItems', {
+        resource: 'forums',
+        ids,
+        text: 'forums:',
+      })
+    },
+
+    fetchThreads(context, { ids }) {
+      return context.dispatch('fetchItems', {
+        resource: 'threads',
+        ids,
+        text: 'threads:',
+      })
+    },
+
+    fetchPosts(context, { ids }) {
+      return context.dispatch('fetchItems', {
+        resource: 'posts',
+        ids,
+        text: 'posts:',
+      })
+    },
+
+    fetchUsers(context, { ids }) {
+      return context.dispatch('fetchItems', {
+        resource: 'users',
+        ids,
+        text: 'users:',
+      })
     },
 
     fetchAllCategories({ state, commit }) {
@@ -176,6 +224,7 @@ export default new Vuex.Store({
     },
 
     fetchItems({ dispatch }, { ids, resource, text }) {
+      ids = Array.isArray(ids) ? ids : Object.keys(ids)
       return Promise.all(
         ids.map((id) => dispatch('fetchItem', { id, resource, text }))
       )
