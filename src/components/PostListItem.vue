@@ -28,7 +28,11 @@
       </template>
 
       <div v-else style="width: 100%">
-        <PostEditor :post="post" @save="editing = false" />
+        <PostEditor
+          :post="post"
+          @save="editing = false"
+          @cancel="editing = false"
+        />
       </div>
     </div>
 
