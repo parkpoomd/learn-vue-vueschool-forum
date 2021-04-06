@@ -128,6 +128,10 @@ export default new Vuex.Store({
       return dispatch('fetchItem', { resource: 'posts', id, text: 'post : ' })
     },
 
+    fetchPosts({ dispatch }, { ids }) {
+      return dispatch('fetchItems', { resource: 'posts', text: 'posts', ids })
+    },
+
     fetchItem({ state, commit }, { id, text, resource }) {
       console.log(text, id)
       return new Promise((resolve, reject) => {
@@ -144,6 +148,12 @@ export default new Vuex.Store({
             resolve(state[resource][id])
           })
       })
+    },
+
+    fetchItems({ dispatch }, { ids, resource, text }) {
+      return Promise.all(
+        ids.map((id) => dispatch('fetchItem', { id, resource, text }))
+      )
     },
   },
 
