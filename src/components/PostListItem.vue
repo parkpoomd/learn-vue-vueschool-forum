@@ -70,7 +70,7 @@ export default {
     },
 
     userPostsCount() {
-      return this.$store.getters.userPostCount(this.post.userId)
+      return this.$store.getters.userPostsCount(this.post.userId)
     },
   },
 }
