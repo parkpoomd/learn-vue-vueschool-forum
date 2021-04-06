@@ -30,6 +30,23 @@ export default {
 
     post: {
       type: Object,
+      // (true) = valid
+      validator: (obj) => {
+        const keyIsValid = typeof obj['.key'] === 'string'
+        const textIsValid = typeof obj.text === 'string'
+        const valid = keyIsValid && textIsValid
+        if (!textIsValid) {
+          console.error(
+            'The post prop object must include a `text` attributes.'
+          )
+        }
+        if (!keyIsValid) {
+          console.error(
+            'The post prop object must include a `.key` attributes.'
+          )
+        }
+        return valid
+      },
     },
   },
 
