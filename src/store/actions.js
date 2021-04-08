@@ -190,6 +190,13 @@ export default {
     commit('setUser', { userId: user['.key'], user })
   },
 
+  fetchAuthUser({ dispatch, commit }) {
+    const userId = firebase.auth().currentUser.uid
+    return dispatch('fetchUser', { id: userId }).then(() => {
+      commit('setAuthId', userId)
+    })
+  },
+
   fetchCategory: ({ dispatch }, { id }) =>
     dispatch('fetchItem', {
       resource: 'categories',
