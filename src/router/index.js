@@ -10,6 +10,7 @@ import Profile from '@/pages/PageProfile'
 import Register from '@/pages/PageRegister'
 import SignIn from '@/pages/PageSignIn'
 import NotFound from '@/pages/PageNotFound'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,13 @@ const routes = [
     name: 'Profile',
     component: Profile,
     props: true,
+    beforeEnter(to, from, next) {
+      if (store.state.authId) {
+        next()
+      } else {
+        next({ name: 'Home' })
+      }
+    },
   },
   {
     path: '/me/edit',
@@ -70,6 +78,13 @@ const routes = [
     path: '/signin',
     name: 'SignIn',
     component: SignIn,
+  },
+  {
+    path: '/logout',
+    name: 'SignOut',
+    beforeEnter(to, from, next) {
+      store.dispatch('signOut').then(() => next({ name: 'Home' }))
+    },
   },
   {
     path: '*',
