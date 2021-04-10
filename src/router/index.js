@@ -102,7 +102,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log(`navigating to ${to.name} from ${from.name}`)
 
-  store.dispatch('initAuthentication').then((user) => {
+  store.dispatch('auth/initAuthentication').then((user) => {
     if (to.matched.some((route) => route.meta.requiresAuth)) {
       // protected route
       if (user) {

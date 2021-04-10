@@ -41,17 +41,17 @@ export default {
 
   computed: {
     ...mapGetters({
-      user: 'authUser',
+      user: 'auth/authUser',
     }),
 
     userPosts() {
-      return this.$store.getters.userPosts(this.user['.key'])
+      return this.$store.getters['users/userPosts'](this.user['.key'])
     },
   },
 
   created() {
     this.$store
-      .dispatch('fetchPosts', { ids: this.user.posts })
+      .dispatch('posts/fetchPosts', { ids: this.user.posts })
       .then(() => this.asyncDataStatus_fetched())
   },
 }
