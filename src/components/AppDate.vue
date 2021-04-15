@@ -6,6 +6,7 @@
 
 <script>
 import moment from 'moment'
+
 export default {
   props: {
     timestamp: {
@@ -18,6 +19,7 @@ export default {
     humanFriendlyDate(date) {
       return moment.unix(date).format('MMMM Do YYYY, h:mm:ss a')
     },
+
     diffForHumans(date) {
       return moment.unix(date).fromNow()
     },
