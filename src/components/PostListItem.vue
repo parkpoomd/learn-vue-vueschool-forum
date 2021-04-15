@@ -28,7 +28,7 @@
         ></a>
       </template>
 
-      <div v-else style="width: 100%">
+      <div v-else>
         <PostEditor
           :post="post"
           @save="editing = false"
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import PostEditor from '@/components/PostEditor'
+import PostEditor from './PostEditor'
 
 export default {
   props: {
