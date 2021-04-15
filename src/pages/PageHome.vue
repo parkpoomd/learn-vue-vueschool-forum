@@ -11,8 +11,6 @@ import CategoryList from '@/components/CategoryList'
 import asyncDataStatus from '@/mixins/asyncDataStatus'
 
 export default {
-  name: 'PageHome',
-
   components: {
     CategoryList,
   },
@@ -26,7 +24,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('categories', ['fetchAllCategories', 'fetchForums']),
+    ...mapActions('categories', ['fetchAllCategories']),
     ...mapActions('forums', ['fetchForums']),
   },
 
