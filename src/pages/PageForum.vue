@@ -33,14 +33,14 @@ export default {
     ThreadList,
   },
 
+  mixins: [asyncDataStatus],
+
   props: {
     id: {
       required: true,
       type: String,
     },
   },
-
-  mixins: [asyncDataStatus],
 
   computed: {
     forum() {
