@@ -74,7 +74,7 @@
             <span v-if="!$v.form.password.required" class="form-error"
               >This field is required</span
             >
-            <span v-else-if="!$v.form.password.minLength" class="form-error"
+            <span v-if="!$v.form.password.minLength" class="form-error"
               >The password must be at least 6 characters long</span
             >
           </template>
@@ -174,13 +174,18 @@ export default {
       }
       this.$store
         .dispatch('auth/registerUserWithEmailAndPassword', this.form)
-        .then(() => this.$router.push('/'))
+        .then(() => this.successRedirect())
     },
 
     registerWithGoogle() {
       this.$store
         .dispatch('auth/signInWithGoogle')
-        .then(() => this.$router.push('/'))
+        .then(() => this.successRedirect())
+    },
+
+    successRedirect() {
+      const redirectTo = this.$route.query.redirectTo || { name: 'Home' }
+      this.$router.push(redirectTo)
     },
   },
 
