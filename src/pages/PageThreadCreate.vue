@@ -18,14 +18,14 @@ export default {
     ThreadEditor,
   },
 
+  mixins: [asyncDataStatus],
+
   props: {
     forumId: {
       type: String,
       required: true,
     },
   },
-
-  mixins: [asyncDataStatus],
 
   data() {
     return {
