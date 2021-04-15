@@ -3,14 +3,14 @@
     <h2 class="list-title">Threads</h2>
     <ThreadListItem
       v-for="thread in threads"
-      :key="thread['.key']"
       :thread="thread"
+      :key="thread['.key']"
     />
   </div>
 </template>
 
 <script>
-import ThreadListItem from '@/components/ThreadListItem'
+import ThreadListItem from './ThreadListItem'
 
 export default {
   components: {
