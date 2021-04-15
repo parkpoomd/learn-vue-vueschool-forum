@@ -44,19 +44,19 @@ import { countObjectProperties } from '@/utils'
 import asyncDataStatus from '@/mixins/asyncDataStatus'
 
 export default {
-  props: {
-    id: {
-      required: true,
-      type: String,
-    },
-  },
-
   components: {
     PostList,
     PostEditor,
   },
 
   mixins: [asyncDataStatus],
+
+  props: {
+    id: {
+      required: true,
+      type: String,
+    },
+  },
 
   computed: {
     ...mapGetters({
