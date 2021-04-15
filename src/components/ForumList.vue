@@ -2,14 +2,15 @@
   <div>
     <ForumListItem
       v-for="forum in forums"
-      :key="forum['.key']"
       :forum="forum"
+      :key="forum['.key']"
     />
   </div>
 </template>
 
 <script>
 import ForumListItem from './ForumListItem'
+
 export default {
   components: {
     ForumListItem,
