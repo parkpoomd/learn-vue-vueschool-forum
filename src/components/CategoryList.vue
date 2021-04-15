@@ -10,6 +10,7 @@
 
 <script>
 import CategoryListItem from './CategoryListItem'
+
 export default {
   components: {
     CategoryListItem,
