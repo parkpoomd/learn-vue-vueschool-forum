@@ -15,14 +15,14 @@ export default {
     CategoryListItem,
   },
 
+  mixins: [asyncDataStatus],
+
   props: {
     id: {
       required: true,
       type: String,
     },
   },
-
-  mixins: [asyncDataStatus],
 
   computed: {
     category() {
