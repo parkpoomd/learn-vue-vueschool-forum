@@ -3,27 +3,13 @@ import { helpers as vuelidateHelpers } from 'vuelidate/lib/validators'
 
 export const uniqueUsername = (value) => {
   if (!vuelidateHelpers.req(value)) {
-    return
+    return true
   }
   return new Promise((resolve, reject) => {
     firebase
       .database()
       .ref('users')
       .orderByChild('usernameLower')
-      .equalTo(value.toLowerCase())
-      .once('value', (snapshot) => resolve(!snapshot.exists()))
-  })
-}
-
-export const uniqueEmail = (value) => {
-  if (!vuelidateHelpers.req(value)) {
-    return
-  }
-  return new Promise((resolve, reject) => {
-    firebase
-      .database()
-      .ref('users')
-      .orderByChild('email')
       .equalTo(value.toLowerCase())
       .once('value', (snapshot) => resolve(!snapshot.exists()))
   })
@@ -46,5 +32,19 @@ export const responseOk = (value) => {
     fetch(value)
       .then((response) => resolve(response.ok))
       .catch(() => resolve(false))
+  })
+}
+
+export const uniqueEmail = (value) => {
+  if (!vuelidateHelpers.req(value)) {
+    return true
+  }
+  return new Promise((resolve, reject) => {
+    firebase
+      .database()
+      .ref('users')
+      .orderByChild('email')
+      .equalTo(value.toLowerCase())
+      .once('value', (snapshot) => resolve(!snapshot.exists()))
   })
 }
