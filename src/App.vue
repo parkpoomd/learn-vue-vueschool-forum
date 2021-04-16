@@ -40,10 +40,6 @@ export default {
     NProgress.start()
     this.$router.beforeEach((to, from, next) => {
       this.showPage = false
-      NProgress.configure({
-        speed: 200,
-        showSpinner: false,
-      })
       NProgress.start()
       next()
     })
